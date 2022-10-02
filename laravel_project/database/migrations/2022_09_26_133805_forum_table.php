@@ -13,21 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->string('password');
 
-        });
          Schema::create('posts', function (Blueprint $table) {
              $table->id();
              $table->foreignId('userid');
+             $table->string('title');
              $table->string('content');
              $table->boolean('spoiler');
              $table->timestamps();
 
-         
+
 
         });
     }
@@ -39,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+
     }
 };
