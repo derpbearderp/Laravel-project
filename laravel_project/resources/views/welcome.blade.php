@@ -40,7 +40,31 @@
                     <div class="row justify-content-center">
                         <div class="col-md-8">
                             <div class="card">
-                                <div class="card-header">{{ __('Dashboard') }}</div>
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>title</th>
+                                        <th width="280px">Action</th>
+                                    </tr>
+                                    @foreach ($posts as $post)
+                                        <tr>
+                                            <td>{{ $post->title }}</td>
+                                            <td>
+                                                <form action="{{ route('posts.destroy',$post->id) }}" method="POST">
+
+                                                    <a class="btn btn-info" href="{{ route('posts.show',$post->id) }}">Show</a>
+
+                                                    <a class="btn btn-primary" href="{{ route('posts.edit',$post->id) }}">Edit</a>
+
+                                                    @csrf
+                                                    @method('DELETE')
+
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </table>
+
 
                                 <div class="card-body">
                                     @if (session('status'))
