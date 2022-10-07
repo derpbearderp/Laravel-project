@@ -46,7 +46,7 @@ class PostController extends Controller
 
         Post::create($request->all());
 
-        return redirect()->route('/')
+        return redirect()->route('posts.index')
             ->with('success','Post created successfully.');
     }
 
@@ -58,7 +58,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('posts.show',compact('post'));
+        return view('show',compact('post'));
     }
 
     /**
@@ -69,7 +69,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit',compact('post'));
+        return view('edit',compact('post'));
     }
 
     /**
@@ -88,7 +88,7 @@ class PostController extends Controller
 
         $post->update($request->all());
 
-        return redirect()->route('/')
+        return redirect()->route('posts.index')
             ->with('success','Post updated successfully');
     }
 
@@ -102,7 +102,7 @@ class PostController extends Controller
     {
         $post->delete();
 
-        return redirect()->route('/')
-            ->with('success','Post deleted successfully');
+        return redirect()->route('posts.index')
+           ->with('success','Post deleted successfully');
     }
 }

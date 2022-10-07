@@ -16,10 +16,10 @@ return new class extends Migration
 
          Schema::create('posts', function (Blueprint $table) {
              $table->id();
-             $table->foreignId('userid');
+             //$table->foreignId('userid');
              $table->string('title');
              $table->string('content');
-             $table->boolean('spoiler');
+             //$table->boolean('spoiler');
              $table->timestamps();
 
 
