@@ -19,6 +19,8 @@ class PostController extends Controller
         return view('welcome',compact('posts'));
     }
 
+
+
     /**
      * Show the form for creating a new resource.
      *

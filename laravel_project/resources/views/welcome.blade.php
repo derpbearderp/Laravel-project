@@ -21,11 +21,12 @@
         </style>
     </head>
     <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
                         <a href="{{ url('/createpost') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Make post</a>
+
                     @else
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
@@ -43,11 +44,12 @@
                                 <table class="table table-bordered">
                                     <tr>
                                         <th>title</th>
-                                        <th width="280px">Action</th>
+
                                     </tr>
                                     @foreach ($posts as $post)
                                         <tr>
                                             <td>{{ $post->title }}</td>
+
                                             <td>
                                                 <form action="{{ route('posts.destroy',$post->id) }}" method="POST">
 
@@ -59,6 +61,7 @@
                                                     @method('DELETE')
 
                                                     <button type="submit" class="btn btn-danger">Delete</button>
+
                                                 </form>
                                             </td>
                                         </tr>
