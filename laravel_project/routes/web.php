@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +23,10 @@ Route::get('/createpost', function () {
     return view('createpost');
 });
 
-
+//this could go if users doesnt work 1/2, other in welcome blade
+Route::get('/userindex', function () {
+    return view('userindex');
+});
 
 Auth::routes();
 
@@ -30,4 +34,6 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 
 Route::resource('posts', PostController::class);
+
+Route::resource('users', UserController::class);
 

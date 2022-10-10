@@ -27,6 +27,8 @@
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
                         <a href="{{ url('/createpost') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Make post</a>
+
+                        <a href="{{ url('/userindex') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">your account</a>
                     @else
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
@@ -48,7 +50,7 @@
                                     @foreach ($posts as $post)
                                         <tr>
                                             <td>{{ $post->title }}</td>
-                                            @if(Auth::check() && Auth::user()->id == 1)
+
 
                                             <td>
                                                 <form action="{{ route('posts.destroy',$post->id) }}" method="POST">
@@ -59,12 +61,12 @@
 
                                                     @csrf
                                                     @method('DELETE')
-
+                                                    @if(Auth::check() && Auth::user()->id == 1)
                                                     <button type="submit" class="btn btn-danger">Delete</button>
-
+                                                    @endif
                                                 </form>
                                             </td>
-                                            @endif
+
                                         </tr>
                                     @endforeach
                                 </table>
