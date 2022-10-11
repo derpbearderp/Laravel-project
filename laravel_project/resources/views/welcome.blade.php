@@ -1,3 +1,4 @@
+@extends('layouts.app')
 <!DOCTYPE html>
 
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -21,6 +22,7 @@
             }
         </style>
     </head>
+
     <body class="antialiased">
 
             @if (Route::has('login'))
@@ -28,7 +30,7 @@
                     @auth
                         <a href="{{ url('/createpost') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Make post</a>
 
-                        <a href="{{ url('/userindex') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">your account</a>
+                        <a href="{{ url('/userindex') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">{{auth::user()->name}}</a>
                     @else
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
@@ -38,14 +40,15 @@
                     @endauth
                 </div>
             @endif
-
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-md-8">
                             <div class="card">
                                 <table class="table table-bordered">
                                     <tr>
+
                                         <th>title</th>
+
                                     </tr>
                                     @foreach ($posts as $post)
                                         <tr>
@@ -87,5 +90,6 @@
                     </div>
                 </div> </div>
         </div>
+
     </body>
 </html>

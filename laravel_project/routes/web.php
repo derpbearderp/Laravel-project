@@ -28,6 +28,7 @@ Route::get('/userindex', function () {
     return view('userindex');
 });
 
+
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -36,4 +37,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::resource('posts', PostController::class);
 
 Route::resource('users', UserController::class);
+
+
+
 

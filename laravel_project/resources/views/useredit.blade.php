@@ -7,7 +7,6 @@
                 <h2>Edit Credentials</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
             </div>
         </div>
     </div>
@@ -22,36 +21,30 @@
         </div>
     @endif
 
-    <form action="{{ route('users.update',$user->id) }}" method="POST">
+    <form method="post" action="{{route('users.update', $user)}}">
         @csrf
         @method('PUT')
-
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Title:</strong>
+                    <strong>Name:</strong>
                     <input type="text" name="name" value="{{ $user->name }}" class="form-control" placeholder="Name">
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong>Title:</strong>
-                        <input type="text" name="email" value="{{ $user->email }}" class="form-control" placeholder="Email">
+                        <strong>Email:</strong>
+                        <input type="text" name="email" value="{{ $user->email }}" class="form-control"
+                               placeholder="Email">
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <strong>Title:</strong>
-                            <input type="text" name="password" value="{{ $user->password }}" class="form-control" placeholder="Password">
-                        </div>
-                    </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
             </div>
         </div>
-            </div>
         </div>
     </form>
 @endsection

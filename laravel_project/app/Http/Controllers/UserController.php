@@ -1,9 +1,12 @@
 <?php
 //can be removed if this doesnt work 1/4
+
+
 namespace App\Http\Controllers;
 
-use App\Models\LoggedinUser;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -14,9 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = LoggedinUser::all(); //has to be the one currently logged in somehow later
 
-        return view('userindex',compact('users'));
     }
 
     /**
@@ -26,84 +27,76 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
 
-        ]);
-
-        LoggedinUser::create($request->all());
-
-        return redirect()->route('users.index')
-            ->with('success','User created successfully.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\LoggedinUser  $user
-     * @return \Illuminate\Http\Response
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function show(LoggedinUser $user)
+    public function show()
     {
-        return view('show',compact('user'));
+        $user = Auth::user();
+        return view('useredit', compact('user'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\LoggedinUser  $user
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\user $user
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function edit(LoggedinUser $user)
+    public function edit(user $user)
     {
-        return view('edit',compact('user'));
+        $user = Auth::user();
+        return view('users.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\LoggedinUser  $user
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\user $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, LoggedinUser $user)
+    public function update(Request $request, user $user)
     {
-        $request->validate([
+        $this->validate(request(), [
             'name' => 'required',
             'email' => 'required',
-            'password' => 'required',
+
         ]);
 
-        $user->update($request->all());
+        $user->name = request('name');
+        $user->email = request('email');
 
-        return redirect()->route('users.index')
-            ->with('success','User updated successfully');
+
+        $user->save();
+
+        return redirect('userindex');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\LoggedinUser  $user
+     * @param \App\Models\user $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LoggedinUser $user)
+    public function destroy(user $user)
     {
-        $user->delete();
 
-        return redirect()->route('users.index')
-            ->with('success','User deleted successfully');
     }
 }
