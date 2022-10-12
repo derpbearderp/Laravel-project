@@ -42,6 +42,7 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required',
             'content' => 'required',
+            'spoiler'
 
 
         ]);
@@ -86,6 +87,7 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required',
             'content' => 'required',
+            'spoiler'
         ]);
 
         $post->update($request->all());

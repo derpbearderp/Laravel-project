@@ -19,7 +19,7 @@ return new class extends Migration
              //$table->foreignId('userid');
              $table->string('title');
              $table->string('content');
-             //$table->boolean('spoiler');
+             $table->boolean('spoiler')->default(false);
              $table->timestamps();
 
 
