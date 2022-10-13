@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
+
 class PostController extends Controller
 {
     /**
@@ -14,12 +15,17 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
 
-        return view('welcome',compact('posts'));
+        $posts = Post::where('spoiler', 0)->get();
+        return view('welcome', compact('posts'));
     }
 
+    public function spoiler()
+    {
 
+        $posts = Post::all()->get();
+        return view('welcome', compact('posts'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -87,7 +93,7 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required',
             'content' => 'required',
-            'spoiler'
+
         ]);
 
         $post->update($request->all());
@@ -110,3 +116,5 @@ class PostController extends Controller
            ->with('success','Post deleted successfully');
     }
 }
+
+

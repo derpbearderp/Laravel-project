@@ -1,4 +1,6 @@
+
 @extends('layouts.app')
+
 <!DOCTYPE html>
 
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -28,6 +30,7 @@
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
+                        <a href="" class="text-sm text-gray-700 dark:text-gray-500 underline">Turn on spoilers</a>
                         <a href="{{ url('/createpost') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Make post</a>
 
                         <a href="{{ url('/userindex') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">{{auth::user()->name}}</a>
@@ -50,10 +53,9 @@
                                         <th>title</th>
 
                                     </tr>
-                                    @foreach ($posts as $post)
+                                     @foreach ($posts as $post)
                                         <tr>
                                             <td>{{ $post->title }}</td>
-
 
                                             <td>
                                                 <form action="{{ route('posts.destroy',$post->id) }}" method="POST">
@@ -69,7 +71,6 @@
                                                     @endif
                                                 </form>
                                             </td>
-
                                         </tr>
                                     @endforeach
                                 </table>

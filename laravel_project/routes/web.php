@@ -23,7 +23,7 @@ Route::get('/createpost', function () {
     return view('createpost');
 });
 
-//this could go if users doesnt work 1/2, other in welcome blade
+
 Route::get('/userindex', function () {
     return view('userindex');
 });
@@ -31,8 +31,7 @@ Route::get('/userindex', function () {
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+Route::get('/', [App\Http\Controllers\PostController::class, 'index'])->name('home');
 
 Route::resource('posts', PostController::class);
 
