@@ -35,6 +35,8 @@ Route::get('/', [App\Http\Controllers\PostController::class, 'index'])->name('ho
 
 Route::get('spoilers', [App\Http\Controllers\PostController::class, 'spoiler'])->name('spoilers');
 
+Route::get('search', [App\Http\Controllers\PostController::class, 'search'])->name('search');
+
 Route::resource('posts', PostController::class);
 
 Route::resource('users', UserController::class);

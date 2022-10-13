@@ -27,6 +27,19 @@ class PostController extends Controller
         return view('welcome', compact('posts'));
     }
 
+    public function search(Request $request){
+
+        $search = $request->input('search');
+
+
+        $posts = Post::query()
+            ->where('title', 'LIKE', "%{$search}%")
+            ->orWhere('content', 'LIKE', "%{$search}%")
+            ->get();
+
+
+        return view('search', compact('posts'));
+    }
     /**
      * Show the form for creating a new resource.
      *

@@ -29,10 +29,9 @@
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
+                        <a href="{{ url('/') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
                         <a href="{{ url('/spoilers') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Show spoilers</a>
-                        <a href="{{ url('/') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Hide spoilers</a>
                         <a href="{{ url('/createpost') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Make post</a>
-
                         <a href="{{ url('/userindex') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">{{auth::user()->name}}</a>
                     @else
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
@@ -49,12 +48,12 @@
                             <div class="card">
                                 <table class="table table-bordered">
                                     <tr>
-                                        <form action="" method="POST">
-                                        <input type="text" class="form-control col-md-4 float-left" name="search" id="search" placeholder="Search..."><button type="submit" class="btn btn-primary">Search</button>
-                                        </form>
+                                        <form action="{{ route('search') }}" method="GET">
+                                            <input type="text" class="form-control col-md-4 float-left" name="search" id="search" placeholder="Search..." required/>
+                                            <button type="submit">Search</button>
+
                                         <th>title</th>
 
-                                    </tr>
                                      @foreach ($posts as $post)
                                         <tr>
                                             <td>{{ $post->title }}</td>
