@@ -38,7 +38,7 @@ class PostController extends Controller
             ->get();
 
 
-        return view('search', compact('posts'));
+        return view('welcome', compact('posts'));
     }
     /**
      * Show the form for creating a new resource.
