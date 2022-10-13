@@ -23,7 +23,7 @@ class PostController extends Controller
     public function spoiler()
     {
 
-        $posts = Post::all();
+        $posts = Post::where('spoiler', 1)->get();
         return view('welcome', compact('posts'));
     }
 

@@ -49,7 +49,9 @@
                             <div class="card">
                                 <table class="table table-bordered">
                                     <tr>
-
+                                        <form action="" method="POST">
+                                        <input type="text" class="form-control col-md-4 float-left" name="search" id="search" placeholder="Search..."><button type="submit" class="btn btn-primary">Search</button>
+                                        </form>
                                         <th>title</th>
 
                                     </tr>
