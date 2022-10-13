@@ -26,11 +26,11 @@
     </head>
 
     <body class="antialiased">
-
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
-                        <a href="" class="text-sm text-gray-700 dark:text-gray-500 underline">Turn on spoilers</a>
+                        <a href="{{ url('/spoilers') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Show spoilers</a>
+                        <a href="{{ url('/') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Hide spoilers</a>
                         <a href="{{ url('/createpost') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Make post</a>
 
                         <a href="{{ url('/userindex') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">{{auth::user()->name}}</a>

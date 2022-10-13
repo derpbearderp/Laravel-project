@@ -33,6 +33,8 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\PostController::class, 'index'])->name('home');
 
+Route::get('spoilers', [App\Http\Controllers\PostController::class, 'spoiler'])->name('spoilers');
+
 Route::resource('posts', PostController::class);
 
 Route::resource('users', UserController::class);
