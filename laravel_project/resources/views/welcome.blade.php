@@ -63,12 +63,13 @@
                                                 <form action="{{ route('posts.destroy',$post->id) }}" method="POST">
 
                                                     <a class="btn btn-info" href="{{ route('posts.show',$post->id) }}">Show</a>
-
+                                                    @if(Auth::check() && Auth::user()->id == $post->usersid)
                                                     <a class="btn btn-primary" href="{{ route('posts.edit',$post->id) }}">Edit</a>
+                                                    @endif
 
                                                     @csrf
                                                     @method('DELETE')
-                                                    @if(Auth::check() && Auth::user()->id == 1)
+                                                    @if(Auth::check() && Auth::user()->id == 1 || Auth::check() && Auth::user()->id == $post->usersid)
                                                     <button type="submit" class="btn btn-danger">Delete</button>
                                                     @endif
                                                 </form>
