@@ -28,7 +28,6 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-
                     <input type="text" name="title" class="form-control" placeholder="Title">
                 </div>
             </div>
@@ -44,7 +43,7 @@
                 <label for="spoiler">Spoiler</label><br>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" id="usersid" name="usersid" value="{{auth::user()->id}}" class="btn btn-primary">Submit</button>
             </div>
         </div>
 

@@ -49,8 +49,9 @@
                                 <table class="table table-bordered">
                                     <tr>
                                         <form action="{{ route('search') }}" method="GET">
-                                            <input type="text" class="form-control col-md-4 float-left" name="search" id="search" placeholder="Search..." required/>
-                                            <button type="submit">Search</button>
+                                            <input type="text" class="form-control col-md-4 float-left" name="search" id="search" placeholder="Search all" required/>
+                                            <button type="submit">Search</button></form>
+
 
                                         <th>title</th>
 

@@ -40,6 +40,7 @@ class PostController extends Controller
 
         return view('welcome', compact('posts'));
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -61,12 +62,13 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required',
             'content' => 'required',
-            'spoiler'
-
+            'spoiler',
+            'usersid'
 
         ]);
 
         Post::create($request->all());
+
 
         return redirect()->route('posts.index')
             ->with('success','Post created successfully.');
