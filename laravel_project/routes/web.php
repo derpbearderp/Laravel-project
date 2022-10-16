@@ -37,6 +37,8 @@ Route::get('spoilers', [App\Http\Controllers\PostController::class, 'spoiler'])-
 
 Route::get('search', [App\Http\Controllers\PostController::class, 'search'])->name('search');
 
+Route::get('adminpage', [App\Http\Controllers\UserController::class, 'index'])->name('adminpage');
+
 Route::resource('posts', PostController::class);
 
 Route::resource('users', UserController::class);

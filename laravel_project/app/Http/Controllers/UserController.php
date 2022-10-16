@@ -17,7 +17,8 @@ class UserController extends Controller
      */
     public function index()
     {
-
+        $users = user::all();
+        return view('adminpage', compact('users'));
     }
 
     /**
@@ -97,6 +98,9 @@ class UserController extends Controller
      */
     public function destroy(user $user)
     {
+        $user->delete();
 
+        return redirect()->route('users.index')
+            ->with('success','User deleted successfully');
     }
 }

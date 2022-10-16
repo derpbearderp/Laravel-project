@@ -38,12 +38,16 @@
                 </div>
 
             </div>
+
+            @if((Auth::check() && Auth::user()->hasposted == 1))
             <div>
                 <input type="checkbox" id="spoiler" name="spoiler" value="1">
                 <label for="spoiler">Spoiler</label><br>
             </div>
+            @endif
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" id="usersid" name="usersid" value="{{auth::user()->id}}" class="btn btn-primary">Submit</button>
+
             </div>
         </div>
 

@@ -26,55 +26,27 @@
     </head>
 
     <body class="antialiased">
-            @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        @if(Auth::check() && Auth::user()->id == 1)
-                            <a href="{{ url('adminpage') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Admin page</a>
-                        @endif
                         <a href="{{ url('/') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-                        <a href="{{ url('/spoilers') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Show spoilers</a>
-                        <a href="{{ url('/createpost') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Make post</a>
-                        <a href="{{ url('/userindex') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">{{auth::user()->name}}</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                        @endif
-                    @endauth
                 </div>
-            @endif
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-md-8">
                             <div class="card">
                                 <table class="table table-bordered">
                                     <tr>
-                                        <form action="{{ route('search') }}" method="GET">
-                                            <input type="text" class="form-control col-md-4 float-left" name="search" id="search" placeholder="Search all" required/>
-                                            <button type="submit">Search</button></form>
+                                        <th>All Users</th>
 
-
-                                        <th>title</th>
-
-                                     @foreach ($posts as $post)
+                                     @foreach ($users as $user)
                                         <tr>
-                                            <td>{{ $post->title }}</td>
-
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->email }}</td>
                                             <td>
-                                                <form action="{{ route('posts.destroy',$post->id) }}" method="POST">
-
-                                                    <a class="btn btn-info" href="{{ route('posts.show',$post->id) }}">Show</a>
-                                                    @if(Auth::check() && Auth::user()->id == $post->usersid)
-                                                    <a class="btn btn-primary" href="{{ route('posts.edit',$post->id) }}">Edit</a>
-                                                    @endif
-
+                                                <!---Do not delete the admin account you are logged in with, that neccesitates a database reset!! --->
+                                                <form action="{{ route('users.destroy',$user->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    @if(Auth::check() && Auth::user()->id == 1 || Auth::check() && Auth::user()->id == $post->usersid)
                                                     <button type="submit" class="btn btn-danger">Delete</button>
-                                                    @endif
                                                 </form>
                                             </td>
                                         </tr>
