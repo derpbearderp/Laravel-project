@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
+
 @section('content')
+    @if(Auth::check())
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
@@ -47,4 +49,7 @@
         </div>
         </div>
     </form>
+    @else
+        <h2>You are not allowed to be here without logging in, try logging in</h2>
+    @endif
 @endsection
