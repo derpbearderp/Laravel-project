@@ -42,7 +42,6 @@
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
                                             <td>
-                                                <!---Do not delete the admin account you are logged in with, that neccesitates a database reset!! --->
                                                 <form action="{{ route('users.destroy',$user->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
