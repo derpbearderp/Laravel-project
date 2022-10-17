@@ -1,6 +1,6 @@
 
 @extends('layouts.app')
-
+@if(Auth::check() && Auth::user()->id == 1)
 <!DOCTYPE html>
 
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -71,3 +71,7 @@
 
     </body>
 </html>
+@else
+    <h2>You are not allowed to be here without logging in, try logging in</h2>
+@endif
+

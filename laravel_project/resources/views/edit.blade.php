@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row">
+    @if(Auth::check() && Auth::user()->id == $post->usersid)
+        <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
                 <h2>Edit Post</h2>
@@ -45,4 +46,8 @@
         </div>
 
     </form>
+    @else
+
+        <h2>You are not allowed to be here without logging in, try logging in</h2>
+    @endif
 @endsection
