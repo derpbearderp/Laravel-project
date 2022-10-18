@@ -16,7 +16,7 @@ return new class extends Migration
 
          Schema::create('posts', function (Blueprint $table) {
              $table->id();
-             $table->foreignId('usersid');
+             $table->foreignId('user_id');
              $table->string('title');
              $table->string('content');
              $table->boolean('spoiler')->default(false);

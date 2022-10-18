@@ -24,7 +24,7 @@ class PostController extends Controller
     {
 
         $posts = Post::where('spoiler', 1)->get();
-        return view('welcome', compact('posts'));
+        return view('welcome', compact('posts'));0
     }
 
     public function search(Request $request){
@@ -63,7 +63,7 @@ class PostController extends Controller
             'title' => 'required',
             'content' => 'required',
             'spoiler',
-            'usersid'
+            'user_id'
 
         ]);
 
