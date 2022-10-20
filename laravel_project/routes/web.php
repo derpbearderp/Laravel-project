@@ -31,7 +31,9 @@ Route::get('/userindex', function () {
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\PostController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\PostController::class, 'index', ])->name('home');
+
+Route::post('myth/{post}', [App\Http\Controllers\PostController::class, 'myth', ])->name('posts.myth');
 
 Route::get('spoilers', [App\Http\Controllers\PostController::class, 'spoiler'])->name('spoilers');
 

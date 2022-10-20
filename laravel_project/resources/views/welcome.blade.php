@@ -58,21 +58,35 @@
 
                                         <th>title</th>
 
+
                                      @foreach ($posts as $post)
                                         <tr>
                                             <td>{{ $post->title }}</td>
 
                                             <td>
+
+                                                <form action="{{ route('posts.myth',$post) }}" method="POST">
+                                                    @csrf
+
+                                                @if($post->myth == 0)
+                                                    <input type="hidden" name="myth" value="1"/>
+                                                    <button type="submit" id="myth">True</button>
+                                                @else
+                                                        <input type="hidden" name="myth" value="0"/>
+                                                        <button type="submit" id="myth">Debunked</button>
+                                                @endif
+                                                </form>
+
                                                 <form action="{{ route('posts.destroy',$post->id) }}" method="POST">
 
                                                     <a class="btn btn-info" href="{{ route('posts.show',$post->id) }}">Show</a>
-                                                    @if(Auth::check() && Auth::user()->id == $post->usersid)
+                                                    @if(Auth::check() && Auth::user()->id == $post->user_id)
                                                     <a class="btn btn-primary" href="{{ route('posts.edit',$post->id) }}">Edit</a>
                                                     @endif
 
                                                     @csrf
                                                     @method('DELETE')
-                                                    @if(Auth::check() && Auth::user()->id == 1 || Auth::check() && Auth::user()->id == $post->usersid)
+                                                    @if(Auth::check() && Auth::user()->id == 1 || Auth::check() && Auth::user()->id == $post->user_id)
                                                     <button type="submit" class="btn btn-danger">Delete</button>
                                                     @endif
                                                 </form>

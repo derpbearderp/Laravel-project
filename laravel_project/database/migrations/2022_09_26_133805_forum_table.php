@@ -20,6 +20,7 @@ return new class extends Migration
              $table->string('title');
              $table->string('content');
              $table->boolean('spoiler')->default(false);
+             $table->boolean('myth')->default(false);
              $table->timestamps();
 
 

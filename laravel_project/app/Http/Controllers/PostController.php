@@ -24,7 +24,7 @@ class PostController extends Controller
     {
 
         $posts = Post::where('spoiler', 1)->get();
-        return view('welcome', compact('posts'));0
+        return view('welcome', compact('posts'));
     }
 
     public function search(Request $request){
@@ -36,7 +36,6 @@ class PostController extends Controller
             ->where('title', 'LIKE', "%{$search}%")
             ->orWhere('content', 'LIKE', "%{$search}%")
             ->get();
-
 
         return view('welcome', compact('posts'));
     }
@@ -118,6 +117,26 @@ class PostController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Http\Response
+     */
+
+    public function myth(Request $request, Post $post)
+    {
+        $request->validate([
+            'myth' => 'required',
+       ]);
+
+        $post->update($request->all());
+
+        return redirect()->route('posts.index')
+            ->with('success','Myth updated successfully');
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Post  $post
@@ -130,6 +149,8 @@ class PostController extends Controller
         return redirect()->route('posts.index')
            ->with('success','Post deleted successfully');
     }
+
 }
+
 
 
