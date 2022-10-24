@@ -53,6 +53,8 @@
                                     <tr>
                                         <form action="{{ route('search') }}" method="GET">
                                             <input type="text" class="form-control col-md-4 float-left" name="search" id="search" placeholder="Search all" required/>
+                                            <input type="checkbox" id="spoiler" name="spoiler" value="1">
+                                            <label for="spoiler">Spoiler</label>
                                             <button type="submit">Search</button></form>
 
 
@@ -68,13 +70,17 @@
                                                 <form action="{{ route('posts.myth',$post) }}" method="POST">
                                                     @csrf
 
+
                                                 @if($post->myth == 0)
+
                                                     <input type="hidden" name="myth" value="1"/>
                                                     <button type="submit" id="myth">True</button>
                                                 @else
                                                         <input type="hidden" name="myth" value="0"/>
                                                         <button type="submit" id="myth">Debunked</button>
                                                 @endif
+
+
                                                 </form>
 
                                                 <form action="{{ route('posts.destroy',$post->id) }}" method="POST">

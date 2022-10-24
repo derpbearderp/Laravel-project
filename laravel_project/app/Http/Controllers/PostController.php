@@ -27,18 +27,35 @@ class PostController extends Controller
         return view('welcome', compact('posts'));
     }
 
-    public function search(Request $request){
+    public function search(Request $request)
+    {
+        if ($request->has('spoiler')) {
+            $search = $request->input('search');
 
-        $search = $request->input('search');
+
+            $posts = Post::query()
+                ->where('title', 'LIKE', "%{$search}%")
+                ->Where('spoiler', 'LIKE', 0)
+                ->orWhere('content', 'LIKE', "%{$search}%")
+                ->Where('spoiler', 'LIKE', 0)
+                ->get();
+
+            return view('welcome', compact('posts'));
+        } else{
+            $search = $request->input('search');
 
 
-        $posts = Post::query()
-            ->where('title', 'LIKE', "%{$search}%")
-            ->orWhere('content', 'LIKE', "%{$search}%")
-            ->get();
+            $posts = Post::query()
+                ->where('title', 'LIKE', "%{$search}%")
+                ->Where('spoiler', 'LIKE', 1)
+                ->orWhere('content', 'LIKE', "%{$search}%")
+                ->Where('spoiler', 'LIKE', 1)
+                ->get();
 
-        return view('welcome', compact('posts'));
-    }
+            return view('welcome', compact('posts'));
+            }
+        }
+
 
     /**
      * Show the form for creating a new resource.
