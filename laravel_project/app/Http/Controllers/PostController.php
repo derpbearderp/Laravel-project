@@ -35,9 +35,9 @@ class PostController extends Controller
 
             $posts = Post::query()
                 ->where('title', 'LIKE', "%{$search}%")
-                ->Where('spoiler', 'LIKE', 0)
+                ->Where('spoiler', 'LIKE', 1)
                 ->orWhere('content', 'LIKE', "%{$search}%")
-                ->Where('spoiler', 'LIKE', 0)
+                ->Where('spoiler', 'LIKE', 1)
                 ->get();
 
             return view('welcome', compact('posts'));
@@ -47,9 +47,9 @@ class PostController extends Controller
 
             $posts = Post::query()
                 ->where('title', 'LIKE', "%{$search}%")
-                ->Where('spoiler', 'LIKE', 1)
+                ->Where('spoiler', 'LIKE', 0)
                 ->orWhere('content', 'LIKE', "%{$search}%")
-                ->Where('spoiler', 'LIKE', 1)
+                ->Where('spoiler', 'LIKE', 0)
                 ->get();
 
             return view('welcome', compact('posts'));
