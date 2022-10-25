@@ -58,7 +58,7 @@
                                             <button type="submit">Search</button></form>
 
 
-                                        <th>title</th>
+                                        <th>Game</th>
 
 
                                      @foreach ($posts as $post)

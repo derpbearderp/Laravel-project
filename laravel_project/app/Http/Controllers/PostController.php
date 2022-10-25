@@ -27,6 +27,7 @@ class PostController extends Controller
         return view('welcome', compact('posts'));
     }
 
+
     public function search(Request $request)
     {
         if ($request->has('spoiler')) {
